@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/admin/`;
+
 const initialState = {
     stats: {},
     users: [],
@@ -21,7 +23,7 @@ export const getStats = createAsyncThunk(
                 },
             };
 
-            const response = await axios.get('http://localhost:5000/api/admin/stats', config);
+            const response = await axios.get(API_URL + 'stats', config);
             return response.data;
         } catch (error) {
             const message =

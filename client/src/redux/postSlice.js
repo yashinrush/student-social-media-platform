@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/posts/`;
+
 const initialState = {
     posts: [],
     isError: false,
@@ -22,7 +24,7 @@ export const createPost = createAsyncThunk(
                 },
             };
 
-            const response = await axios.post('http://localhost:5000/api/posts', postData, config);
+            const response = await axios.post(API_URL, postData, config);
             return response.data;
         } catch (error) {
             const message =
@@ -48,7 +50,7 @@ export const getPosts = createAsyncThunk(
                 },
             };
 
-            const response = await axios.get('http://localhost:5000/api/posts', config);
+            const response = await axios.get(API_URL, config);
             return response.data;
         } catch (error) {
             const message =

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/internships/`;
+
 const initialState = {
     internships: [],
     isError: false,
@@ -21,7 +23,7 @@ export const postInternship = createAsyncThunk(
                 },
             };
 
-            const response = await axios.post('http://localhost:5000/api/internships', internshipData, config);
+            const response = await axios.post(API_URL, internshipData, config);
             return response.data;
         } catch (error) {
             const message =
@@ -40,7 +42,7 @@ export const getInternships = createAsyncThunk(
     'internships/getAll',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/internships');
+            const response = await axios.get(API_URL);
             return response.data;
         } catch (error) {
             const message =

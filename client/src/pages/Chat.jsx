@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { FaPaperPlane } from 'react-icons/fa';
 
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect(import.meta.env.VITE_API_URL);
 
 function Chat() {
     const { user } = useSelector((state) => state.auth);

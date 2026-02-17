@@ -52,7 +52,7 @@ function Post({ post }) {
             {images && images.length > 0 && (
                 <div className="mb-4 rounded-xl overflow-hidden border border-gray-100 dark:border-slate-800">
                     {images.map((img, index) => (
-                        <img key={index} src={`http://localhost:5000${img}`} alt="Post content" className="w-full object-cover max-h-[500px]" />
+                        <img key={index} src={`${import.meta.env.VITE_API_URL}${img}`} alt="Post content" className="w-full object-cover max-h-[500px]" />
                     ))}
                 </div>
             )}

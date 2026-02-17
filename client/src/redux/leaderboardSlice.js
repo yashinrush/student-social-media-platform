@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/leaderboard/`;
+
 const initialState = {
     leaderboard: [],
     isLoading: false,
@@ -13,7 +15,7 @@ export const getLeaderboard = createAsyncThunk(
     'leaderboard/get',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/leaderboard');
+            const response = await axios.get(API_URL);
             return response.data;
         } catch (error) {
             const message =

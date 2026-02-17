@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/doubts/`;
+
 const initialState = {
     doubts: [],
     isError: false,
@@ -21,7 +23,7 @@ export const askDoubt = createAsyncThunk(
                 },
             };
 
-            const response = await axios.post('http://localhost:5000/api/doubts', doubtData, config);
+            const response = await axios.post(API_URL, doubtData, config);
             return response.data;
         } catch (error) {
             const message =
@@ -40,7 +42,7 @@ export const getDoubts = createAsyncThunk(
     'doubts/getAll',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/doubts');
+            const response = await axios.get(API_URL);
             return response.data;
         } catch (error) {
             const message =
@@ -66,7 +68,7 @@ export const answerDoubt = createAsyncThunk(
                 },
             };
 
-            const response = await axios.post(`http://localhost:5000/api/doubts/${id}/answer`, { text }, config);
+            const response = await axios.post(`${API_URL}${id}/answer`, { text }, config);
             return response.data;
         } catch (error) {
             const message =

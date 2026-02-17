@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/notifications/`;
+
 const initialState = {
     notifications: [],
     isLoading: false,
@@ -20,7 +22,7 @@ export const getNotifications = createAsyncThunk(
                 },
             };
 
-            const response = await axios.get('http://localhost:5000/api/notifications', config);
+            const response = await axios.get(API_URL, config);
             return response.data;
         } catch (error) {
             const message =
@@ -46,7 +48,7 @@ export const markRead = createAsyncThunk(
                 },
             };
 
-            const response = await axios.put(`http://localhost:5000/api/notifications/${id}/read`, {}, config);
+            const response = await axios.put(`${API_URL}${id}/read`, {}, config);
             return response.data;
         } catch (error) {
             const message =

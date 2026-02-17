@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = `${import.meta.env.VITE_API_URL}/api/communities/`;
+
 const initialState = {
     communities: [],
     isError: false,
@@ -21,7 +23,7 @@ export const createCommunity = createAsyncThunk(
                 },
             };
 
-            const response = await axios.post('http://localhost:5000/api/communities', communityData, config);
+            const response = await axios.post(API_URL, communityData, config);
             return response.data;
         } catch (error) {
             const message =
@@ -40,7 +42,7 @@ export const getCommunities = createAsyncThunk(
     'communities/getAll',
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/communities');
+            const response = await axios.get(API_URL);
             return response.data;
         } catch (error) {
             const message =
@@ -66,7 +68,7 @@ export const joinCommunity = createAsyncThunk(
                 },
             };
 
-            const response = await axios.put(`http://localhost:5000/api/communities/${id}/join`, {}, config);
+            const response = await axios.put(`${API_URL}${id}/join`, {}, config);
             return response.data;
         } catch (error) {
             const message =

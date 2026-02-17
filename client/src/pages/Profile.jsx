@@ -17,7 +17,7 @@ function Profile() {
                 const userId = id || (currentUser ? currentUser._id : null);
                 if (!userId) return;
 
-                const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/${userId}`);
                 setProfile(response.data);
             } catch (error) {
                 console.error(error);
